@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100% !important; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.ng-bar{
+	height: 30px;
+}
+
+.sidenav-container{
+	height: 100%;
+}
+
+mat-sidenav.mat-drawer{
+	width: 15%;
+	background-color: transparent;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.3);
+}

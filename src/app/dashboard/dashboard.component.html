@@ -1,0 +1,21 @@
+<div style="text-align:center; margin-top: 20px">
+  <h1>{{operation}} Flow!</h1>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Enter the name" [(ngModel)]="flow.nom" required>
+    </mat-form-field>
+    <button mat-button color="primary" (click)="getFlow()">Get The Flow</button>
+  </div>
+  <div *ngIf="showAll">
+		<mat-form-field>
+		  <input matInput placeholder="Process" [(ngModel)]="flow.process">
+		</mat-form-field>
+		<mat-form-field style="margin: 0 15px">
+		  <input matInput placeholder="App Source" [(ngModel)]="flow.appSource">
+		</mat-form-field>
+		<mat-form-field>
+		  <input matInput placeholder="App Cible" [(ngModel)]="flow.appCible">
+		</mat-form-field>
+  </div>
+  <pre>{{ flow | json }}</pre>
+</div>
