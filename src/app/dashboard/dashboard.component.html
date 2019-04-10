@@ -1,21 +1,44 @@
-<div style="text-align:center; margin-top: 20px">
-  <h1>{{operation}} Flow!</h1>
-  <div>
-    <mat-form-field>
-      <input matInput placeholder="Enter the name" [(ngModel)]="flow.nom" required>
-    </mat-form-field>
-    <button mat-button color="primary" (click)="getFlow()">Get The Flow</button>
-  </div>
-  <div *ngIf="showAll">
-		<mat-form-field>
-		  <input matInput placeholder="Process" [(ngModel)]="flow.process">
-		</mat-form-field>
-		<mat-form-field style="margin: 0 15px">
-		  <input matInput placeholder="App Source" [(ngModel)]="flow.appSource">
-		</mat-form-field>
-		<mat-form-field>
-		  <input matInput placeholder="App Cible" [(ngModel)]="flow.appCible">
-		</mat-form-field>
-  </div>
-  <pre>{{ flow | json }}</pre>
+<div>
+
+    <h1>{{operation}} Flow!</h1>
+
+    <div>
+        <mat-form-field class="form-field form-field-lg">
+            <input matInput placeholder="Enter the name" [(ngModel)]="flow.nom" required>
+        </mat-form-field>
+        <!-- <button mat-button color="primary" (click)="getFlow()">Get The Flow</button> -->
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <mat-grid-list cols="3" rowHeight="2:1">
+
+        <mat-grid-tile colspan="2" class="flex-column" style="background-color: lightblue">
+            <div>
+                <mat-form-field>
+                    <input matInput placeholder="Patrimoine">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Projet Tibco">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Objet manipulé">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <input matInput placeholder="Vercion CI trunk">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Vercion CI Correction">
+                </mat-form-field>
+            </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile  style="background-color: lightgrey">
+            
+        </mat-grid-tile>
+
+    </mat-grid-list>
+
 </div>

@@ -1,0 +1,13 @@
+mat-form-field.form-field{
+	width: 80%;
+	
+	&-lg{
+		input {
+			font-size: 30px;
+		}
+		label {
+			font-size: 20px;
+		}
+	}
+
+}

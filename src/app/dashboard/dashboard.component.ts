@@ -34,11 +34,13 @@ export class DashboardComponent {
 			{ params: new HttpParams().set('name', this.flow.nom) }
 		).subscribe(
 			(data) => {
+				console.log(data)
 				if(data.nom == ""){
-					let elts = that.flow.nom.split("-");
+					/*let elts = that.flow.nom.split("-");
 					that.flow.process = elts[0];
 					that.flow.appSource = elts[1];
-					that.flow.appCible = elts[2];
+					that.flow.appCible = elts[2];*/
+
 					that.operation = 'Add';
 				}else{
 					that.flow = data;
