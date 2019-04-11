@@ -1,0 +1,6 @@
+<mat-form-field>
+	<mat-select [placeholder]="placeholder" name="test">
+		<!-- <mat-option *ngFor="let item of field.options" [value]="item">{{item}}</mat-option> -->
+		<mat-option *ngFor="let one of source | enumsToValues" [value]="one.value">{{one.value}}</mat-option>
+	</mat-select>
+</mat-form-field>

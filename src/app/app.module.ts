@@ -1,29 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { HomeComponent } from './home/home.component';
-
-
-import { MaterialModule } from './material/material.module';
-import { NgProgressModule } from '@ngx-progressbar/core';
-import { NgProgressHttpModule } from '@ngx-progressbar/http';
-
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EnumsToValuesPipe } from './shared/pipes/enum-to-value.pipe';
+
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { MaterialModule } from './material/material.module';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
+import { FormFieldsModule } from './form-fields/form-fields.module';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    HomeComponent,
-    EnumsToValuesPipe
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +33,8 @@ import { EnumsToValuesPipe } from './shared/pipes/enum-to-value.pipe';
     BrowserAnimationsModule,
     MaterialModule,
     NgProgressModule,
-    NgProgressHttpModule
+    NgProgressHttpModule,
+    FormFieldsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

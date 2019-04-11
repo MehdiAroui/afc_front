@@ -1,42 +1,68 @@
-<div>
+<div class="content">
 
-    <h1>{{operation}} Flow!</h1>
+    <h2>{{operation}} Flow!</h2>
 
-    <div>
-        <mat-form-field class="form-field form-field-lg">
-            <input matInput placeholder="Enter the name" [(ngModel)]="flow.nom" required>
+    <div class="row">
+        <mat-form-field class="col-md-6 form-field form-field-lg">
+            <input (keyup)="setFlowApps($event)" matInput placeholder="Enter the name" [(ngModel)]="flow.nom" required>
         </mat-form-field>
-        <!-- <button mat-button color="primary" (click)="getFlow()">Get The Flow</button> -->
+        <div class="col-md-6 row">
+            <mat-form-field appearance="outline" class="col-md-4">
+                <mat-label>Processus de flux</mat-label>  
+                <input matInput disabled [value]="flow.process" >
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-md-4">
+                <mat-label>Application Source</mat-label>
+                <input matInput disabled [value]="flow.appSource" >
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="col-md-4">
+                <mat-label>Application Cible</mat-label>
+                <input matInput disabled [value]="flow.appCible" >
+            </mat-form-field>
+        </div>
     </div>
 
     <mat-divider></mat-divider>
 
-    <mat-grid-list cols="3" rowHeight="2:1">
+    <mat-grid-list cols="5" rowHeight="1:1">
 
-        <mat-grid-tile colspan="2" class="flex-column" style="background-color: lightblue">
-            <div>
-                <mat-form-field>
+        <mat-grid-tile colspan="3" class="flex-column">
+
+            <div class="row">
+                <mat-form-field class="col-md-6">
                     <input matInput placeholder="Patrimoine">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field class="col-md-6">
                     <input matInput placeholder="Projet Tibco">
                 </mat-form-field>
-                <mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field class="col-md-4">
                     <input matInput placeholder="Objet manipulé">
                 </mat-form-field>
-            </div>
-            <div>
-                <mat-form-field>
+                <mat-form-field class="col-md-4">
                     <input matInput placeholder="Vercion CI trunk">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field class="col-md-4">
                     <input matInput placeholder="Vercion CI Correction">
                 </mat-form-field>
             </div>
+
         </mat-grid-tile>
 
-        <mat-grid-tile  style="background-color: lightgrey">
-            
+        <mat-grid-tile colspan="2" class="flex-column">
+            <div class="row">
+                <app-select class="col-md-6" [source]="denomination" placeholder="Dénomination"></app-select> 
+                <app-select class="col-md-6" [source]="type_source" placeholder="Type de source"></app-select> 
+            </div>
+            <div class="row">
+                <app-select class="col-md-6" [source]="type_cible" placeholder="Type de cible"></app-select> 
+                <app-select class="col-md-6" [source]="mvs" placeholder="Instance MVS"></app-select>  
+            </div>
+            <div class="row">
+                <app-select class="col-md-6" [source]="planification" placeholder="Planification"></app-select> 
+            </div>
         </mat-grid-tile>
 
     </mat-grid-list>

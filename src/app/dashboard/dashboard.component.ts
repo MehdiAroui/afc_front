@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import {FormControl, Validators} from '@angular/forms';
 
+import { MVSCible, Criticite, Denomination, Type, Planification } from '../shared/enums/index';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -12,21 +14,26 @@ export class DashboardComponent {
 	title = '';
 	name_flow = '';
 	flow : Object = {
-				  "nom": "",
-				  "process": "",
-				  "appSource": "",
-				  "appCible": ""
-				};
+		"nom": "",
+		"process": "",
+		"appSource": "",
+	 	"appCible": ""
+	};
 	operation = 'set your';
-	showAll = false;
+
+
+	mvs = MVSCible;
+	planification = Planification;
+	criticite = Criticite;
+	denomination = Denomination;
+	type_source= Type;
+	type_cible = Type;
 	
 	
 	constructor(private http: HttpClient){
-	  
 	}
 	
 	getFlow(){
-
 		let that = this;
 
 		this.http.get(
@@ -46,13 +53,20 @@ export class DashboardComponent {
 					that.flow = data;
 					that.operation = 'Update';
 				}
-				that.showAll = true;
 			},
 			(err) => {
 				console.log(err);
 				that.operation = 'ERR';
 			}
 		)
-		
+	}
+
+	setFlowApps(e){
+		let elts = this.flow.nom.split("-");
+
+		if(elts[0]) this.flow.process 	= elts[0];
+		if(elts[1]) this.flow.appSource = elts[1];
+		if(elts[2]) this.flow.appCible 	= elts[2];
+
 	}
 }
