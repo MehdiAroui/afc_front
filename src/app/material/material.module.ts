@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { MatListModule, MatToolbarModule, MatSidenavModule, MatCardModule, 
           MatFormFieldModule, MatButtonModule, MatTableModule, MatDialogModule, 
           MatInputModule, MatIconModule, MatCheckboxModule, MatProgressSpinnerModule, 
-          MatSnackBarModule, MatRadioModule, MatSelectModule, MatSortModule, MatGridListModule } from '@angular/material';
+          MatSnackBarModule, MatRadioModule, MatSelectModule, MatSortModule, MatGridListModule,
+          MatExpansionModule, MatDatepickerModule } from '@angular/material';
 
 
 
@@ -28,7 +29,9 @@ import { MatListModule, MatToolbarModule, MatSidenavModule, MatCardModule,
     MatSortModule,
     MatTableModule,
     MatToolbarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatExpansionModule,
+    MatDatepickerModule
   ],
   exports: [
     MatButtonModule,
@@ -47,7 +50,9 @@ import { MatListModule, MatToolbarModule, MatSidenavModule, MatCardModule,
     MatSortModule,
     MatTableModule,
     MatToolbarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatExpansionModule,
+    MatDatepickerModule
   ]
 })
 export class MaterialModule { }

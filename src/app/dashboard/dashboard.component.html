@@ -1,70 +1,104 @@
 <div class="content">
+    <mat-accordion [multi]="true" class="example-headers-align">
+        <mat-expansion-panel [expanded]="true" (opened)="setStep(0)" hideToggle>
 
-    <h2>{{operation}} Flow!</h2>
-
-    <div class="row">
-        <mat-form-field class="col-md-6 form-field form-field-lg">
-            <input (keyup)="setFlowApps($event)" matInput placeholder="Enter the name" [(ngModel)]="flow.nom" required>
-        </mat-form-field>
-        <div class="col-md-6 row">
-            <mat-form-field appearance="outline" class="col-md-4">
-                <mat-label>Processus de flux</mat-label>  
-                <input matInput disabled [value]="flow.process" >
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="col-md-4">
-                <mat-label>Application Source</mat-label>
-                <input matInput disabled [value]="flow.appSource" >
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="col-md-4">
-                <mat-label>Application Cible</mat-label>
-                <input matInput disabled [value]="flow.appCible" >
-            </mat-form-field>
-        </div>
-    </div>
-
-    <mat-divider></mat-divider>
-
-    <mat-grid-list cols="5" rowHeight="1:1">
-
-        <mat-grid-tile colspan="3" class="flex-column">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Personal data
+                </mat-panel-title>
+                <mat-panel-description>
+                    Operation : {{operation}}
+                <mat-icon>account_circle</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
 
             <div class="row">
-                <mat-form-field class="col-md-6">
-                    <input matInput placeholder="Patrimoine">
+                <mat-form-field class="col-md-5 form-field form-field-lg">
+                    <input (keyup)="setFlowApps($event)" matInput placeholder="Enter the name" [(ngModel)]="flow.nom" required>
                 </mat-form-field>
-                <mat-form-field class="col-md-6">
-                    <input matInput placeholder="Projet Tibco">
+                <div class="col-md-6 row">
+                    <mat-form-field appearance="outline" class="col-md-4">
+                        <mat-label>Processus de flux</mat-label>  
+                        <input matInput disabled [(ngModel)]="flow.processus">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="col-md-4">
+                        <mat-label>Application Source</mat-label>
+                        <input matInput disabled [(ngModel)]="flow.application_source">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="col-md-3">
+                        <mat-label>Application Cible</mat-label>
+                        <input matInput disabled [(ngModel)]="flow.application_cible">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <mat-action-row>
+                <button mat-button [disabled]="flow.nom == null || flow.nom.split('-').length !== 3" 
+                        color="primary" (click)="getFlow()">Suivant</button>
+            </mat-action-row>
+            
+        </mat-expansion-panel>
+
+        <mat-expansion-panel [expanded]="step === 1" [disabled]="step !== 1"  (opened)="setStep(1)" hideToggle>
+            <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Destination
+                    </mat-panel-title>
+                <mat-panel-description>
+                    Type the country name
+                    <mat-icon>map</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div class="row">
+                <mat-form-field appearance="outline" class="col-md-3">
+                    <mat-label>Patrimoine</mat-label>
+                    <input matInput placeholder="Patrimoine" [(ngModel)]="flow.partimoine_source">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="col-md-3">
+                    <mat-label>Projet Tibco</mat-label>
+                    <input matInput placeholder="Projet Tibco" [(ngModel)]="flow.projet_tibco">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="col-md-3">
+                    <mat-label>Objet manipulé</mat-label>
+                    <input matInput placeholder="Objet manipulé" [(ngModel)]="flow.objet_manipule">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="col-md-2">
+                    <mat-label>Version CI trunk</mat-label>
+                    <input matInput placeholder="Version CI trunk"  [(ngModel)]="flow.version_ci_trunk">
                 </mat-form-field>
             </div>
 
             <div class="row">
-                <mat-form-field class="col-md-4">
-                    <input matInput placeholder="Objet manipulé">
-                </mat-form-field>
-                <mat-form-field class="col-md-4">
-                    <input matInput placeholder="Vercion CI trunk">
-                </mat-form-field>
-                <mat-form-field class="col-md-4">
-                    <input matInput placeholder="Vercion CI Correction">
-                </mat-form-field>
+                <app-select [bindTo]="flow.denomination" class="col-md-2" 
+                            [source]="denomination" placeholder="Dénomination">  
+                </app-select>
+
+                <app-select [bindTo]="flow.type_source" class="col-md-2" 
+                            [source]="type_source" placeholder="Type de source">
+                </app-select>
+
+                <app-select [bindTo]="flow.type_cible" class="col-md-2" (onSelect)="onSelectEvent($event)" 
+                            [source]="type_cible" placeholder="Type de cible">
+                </app-select>
+
+                <app-select [bindTo]="flow.mvs_cible" class="col-md-2" 
+                            [disabled]="flow.type_cible != type_cible.MVS"
+                            [source]="mvs" placeholder="Instance MVS">
+                </app-select>
+
+                <app-select [bindTo]="flow.planification" class="col-md-2" 
+                            [source]="planification" placeholder="Planification">
+                </app-select> 
             </div>
 
-        </mat-grid-tile>
+            <mat-action-row>
+                <button mat-button color="primary" (click)="sendFlow()">Next</button>
+            </mat-action-row>
+        </mat-expansion-panel>
 
-        <mat-grid-tile colspan="2" class="flex-column">
-            <div class="row">
-                <app-select class="col-md-6" [source]="denomination" placeholder="Dénomination"></app-select> 
-                <app-select class="col-md-6" [source]="type_source" placeholder="Type de source"></app-select> 
-            </div>
-            <div class="row">
-                <app-select class="col-md-6" [source]="type_cible" placeholder="Type de cible"></app-select> 
-                <app-select class="col-md-6" [source]="mvs" placeholder="Instance MVS"></app-select>  
-            </div>
-            <div class="row">
-                <app-select class="col-md-6" [source]="planification" placeholder="Planification"></app-select> 
-            </div>
-        </mat-grid-tile>
-
-    </mat-grid-list>
-
+    </mat-accordion>
 </div>

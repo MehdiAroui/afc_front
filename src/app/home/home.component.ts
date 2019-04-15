@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MVSCible } from '../shared/enums/mvs-cible.enum';
+import { HttpClient, HttpParams } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,23 @@ import { MVSCible } from '../shared/enums/mvs-cible.enum';
 })
 export class HomeComponent implements OnInit {
 
-  mvs = MVSCible;
+  step = 0;
+  operation = "";
+  nom = "";
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+  
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
 
   ngOnInit() {
   }
