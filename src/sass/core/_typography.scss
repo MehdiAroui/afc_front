@@ -1,0 +1,6 @@
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Nunito, Roboto'
+);
+
+@include mat-core($custom-typography);

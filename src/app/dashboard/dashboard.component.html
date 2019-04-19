@@ -39,7 +39,8 @@
             
         </mat-expansion-panel>
 
-        <mat-expansion-panel [expanded]="step === 1" [disabled]="step !== 1"  (opened)="setStep(1)" hideToggle>
+        <mat-expansion-panel [expanded]="step === 1" [disabled]="step !== 1" hideToggle>
+        <!-- <mat-expansion-panel expanded="true" (opened)="setStep(1)" hideToggle> -->
             <mat-expansion-panel-header>
                     <mat-panel-title>
                         Destination
@@ -73,24 +74,24 @@
             </div>
 
             <div class="row">
-                <app-select [bindTo]="flow.denomination" class="col-md-2" 
+                <app-select [(ngModel)]="flow.denomination" class="col-md-2" 
                             [source]="denomination" placeholder="Dénomination">  
                 </app-select>
 
-                <app-select [bindTo]="flow.type_source" class="col-md-2" 
+                <app-select [(ngModel)]="flow.type_source" class="col-md-2" 
                             [source]="type_source" placeholder="Type de source">
                 </app-select>
 
-                <app-select [bindTo]="flow.type_cible" class="col-md-2" (onSelect)="onSelectEvent($event)" 
+                <app-select [(ngModel)]="flow.type_cible" class="col-md-2" 
                             [source]="type_cible" placeholder="Type de cible">
                 </app-select>
 
-                <app-select [bindTo]="flow.mvs_cible" class="col-md-2" 
+                <app-select [(ngModel)]="flow.mvs_cible" class="col-md-2" 
                             [disabled]="flow.type_cible != type_cible.MVS"
                             [source]="mvs" placeholder="Instance MVS">
                 </app-select>
 
-                <app-select [bindTo]="flow.planification" class="col-md-2" 
+                <app-select [(ngModel)]="flow.planification" class="col-md-2" 
                             [source]="planification" placeholder="Planification">
                 </app-select> 
             </div>

@@ -20,7 +20,7 @@ export class ApiService {
 
 		return this.http.get<T>(this.apiUrl+url, options)
 		.pipe(
-			retry(1),
+			retry(2),
 			catchError(this.handleError)
 		)
 	}

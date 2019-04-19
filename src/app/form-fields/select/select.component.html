@@ -1,7 +1,6 @@
 <mat-form-field>
-	<mat-select [placeholder]="placeholder" name="test" [(ngModel)]="bindTo" 
-				[disabled]="disabled" (selectionChange)="onSelect()">
-		<!-- <mat-option *ngFor="let item of field.options" [value]="item">{{item}}</mat-option> -->
+	<mat-select [placeholder]="placeholder" [(ngModel)]="value"
+				[disabled]="disabled">
 		<mat-option *ngFor="let one of source | enumsToValues" [value]="one.value">{{one.value}}</mat-option>
 	</mat-select>
 </mat-form-field>
