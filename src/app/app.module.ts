@@ -16,8 +16,6 @@ import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { FormFieldsModule } from './form-fields/form-fields.module';
 
 // Custom Services
-import { ApiService } from './shared/services/api.service';
-
 
 
 @NgModule({
@@ -39,7 +37,6 @@ import { ApiService } from './shared/services/api.service';
     FormFieldsModule
   ],
   providers: [
-    ApiService
   ],
   bootstrap: [AppComponent]
 })

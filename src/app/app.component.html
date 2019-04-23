@@ -1,13 +1,6 @@
-<ng-progress color="red" spinner="false"></ng-progress>
+<ng-progress color="red" [spinner]="false"></ng-progress>
 
-<mat-toolbar class="mat-elevation-z2" color="primary">
-  	<mat-toolbar-row>
-		<button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-		<span>A Nice Toolbar</span>
-		<span class="elements-spacer"></span>
-		<mat-icon class="example-icon" aria-hidden="false">person_outline</mat-icon>
-	</mat-toolbar-row>
-</mat-toolbar>
+
 
 <mat-sidenav-container class="sidenav-container">
 
@@ -15,18 +8,26 @@
 	<mat-sidenav #snav mode="side" opened>
 		<mat-nav-list>
 
-			<a mat-list-item routerLink="/">
+			<a mat-list-item routerLink="/flux" routerLinkActive="active">
 				<mat-icon mat-list-icon>folder</mat-icon>
 				Dashboard
 			</a>
-			<a mat-list-item routerLink="/home">
+			<a mat-list-item routerLink="/home" routerLinkActive="active">
 				<mat-icon mat-list-icon>person</mat-icon>
 				Home
 			</a>
 			
 		</mat-nav-list>
 	</mat-sidenav>
-	<div class="wrapper">
+	<mat-sidenav-content class="wrapper container">
+		<mat-toolbar class="">
+		  	<mat-toolbar-row class="">
+				<button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+				<span>A Nice Toolbar</span>
+				<span class="elements-spacer"></span>
+				<mat-icon class="example-icon" aria-hidden="false">person_outline</mat-icon>
+			</mat-toolbar-row>
+		</mat-toolbar>
 		<router-outlet></router-outlet>
-	</div>
+	</mat-sidenav-content>
 </mat-sidenav-container>

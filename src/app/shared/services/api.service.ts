@@ -12,21 +12,26 @@ import { catchError, retry } from 'rxjs/operators';
 export class ApiService {
 
 	apiUrl = 'http://localhost:8080';
+	headers : HttpHeaders = new HttpHeaders()
+								.set('Content-Type', 'application/json')
+								.set('Accept', 'application/json');
+
+	options = {headers : this.headers};
 
 
 	constructor(private http : HttpClient){}
 
-	get<T>(url, options : any = {}) : Observable<T>{
+	get<T>(url, config : any = {}) : Observable<T>{
 
-		return this.http.get<T>(this.apiUrl+url, options)
+		return this.http.get<T>(this.apiUrl+url, {...config, ...this.options})
 		.pipe(
 			retry(2),
 			catchError(this.handleError)
 		)
 	}
 
-	post<T>(url, data, options = {}){
-		return this.http.post<T>(this.apiUrl+url, data, options)
+	post<T>(url, data, config = {}){
+		return this.http.post<T>(this.apiUrl+url, data, {...config, ...this.options})
 		.pipe(
 			catchError(this.handleError)
 		)

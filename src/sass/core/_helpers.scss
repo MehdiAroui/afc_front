@@ -5,3 +5,11 @@
 .elements-spacer{
 	flex: 1 1 auto;
 }
+
+.active{
+	color: #283593 !important;
+	font-weight: 700;
+	:focus{
+		background-color: transparent;
+	}
+}

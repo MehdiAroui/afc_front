@@ -23,10 +23,10 @@ export class Flow {
   	this.index = 0;
   	this.nom = null;
   	this.description_demi_flux = null;
-  	this.processus = null;
+  	this.processus = "";
   	this.description_flux = null;
-  	this.application_source = null;
-  	this.application_cible = null;
+  	this.application_source = "";
+  	this.application_cible = "";
   	this.partimoine_source = null;
   	this.version_ci_trunk = null;
   	this.version_ci_correction = null;

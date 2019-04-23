@@ -11,36 +11,34 @@
                 <mat-icon>account_circle</mat-icon>
                 </mat-panel-description>
             </mat-expansion-panel-header>
-
             <div class="row">
                 <mat-form-field class="col-md-5 form-field form-field-lg">
-                    <input (keyup)="setFlowApps($event)" matInput placeholder="Enter the name" [(ngModel)]="flow.nom" required>
+                    <input (keyup)="setFlowApps($event)" matInput placeholder="Entrer le nom" [(ngModel)]="flow.nom" required>
                 </mat-form-field>
                 <div class="col-md-6 row">
                     <mat-form-field appearance="outline" class="col-md-4">
                         <mat-label>Processus de flux</mat-label>  
-                        <input matInput disabled [(ngModel)]="flow.processus">
+                        <input matInput disabled [(ngModel)]="flow.processus" required>
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="col-md-4">
                         <mat-label>Application Source</mat-label>
-                        <input matInput disabled [(ngModel)]="flow.application_source">
+                        <input matInput disabled [(ngModel)]="flow.application_source" required>
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="col-md-3">
                         <mat-label>Application Cible</mat-label>
-                        <input matInput disabled [(ngModel)]="flow.application_cible">
+                        <input matInput disabled [(ngModel)]="flow.application_cible" required>
                     </mat-form-field>
                 </div>
             </div>
 
             <mat-action-row>
-                <button mat-button [disabled]="flow.nom == null || flow.nom.split('-').length !== 3" 
-                        color="primary" (click)="getFlow()">Suivant</button>
+                <button mat-button  color="primary" (click)="getFlow()"
+                [disabled]="flow.application_cible.length < 3 || flow.application_source.length < 3 || flow.processus.length < 5" >Suivant</button>
             </mat-action-row>
             
         </mat-expansion-panel>
 
         <mat-expansion-panel [expanded]="step === 1" [disabled]="step !== 1" hideToggle>
-        <!-- <mat-expansion-panel expanded="true" (opened)="setStep(1)" hideToggle> -->
             <mat-expansion-panel-header>
                     <mat-panel-title>
                         Destination
@@ -75,6 +73,7 @@
 
             <div class="row">
                 <app-select [(ngModel)]="flow.denomination" class="col-md-2" 
+                            [disabled]="d_disabled" #deno
                             [source]="denomination" placeholder="Dénomination">  
                 </app-select>
 
@@ -97,7 +96,7 @@
             </div>
 
             <mat-action-row>
-                <button mat-button color="primary" (click)="sendFlow()">Next</button>
+                <button mat-button color="primary" (click)="sendFlow()">Envoyer</button>
             </mat-action-row>
         </mat-expansion-panel>
 
