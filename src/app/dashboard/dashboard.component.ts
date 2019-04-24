@@ -16,9 +16,8 @@ import { SelectComponent } from '../form-fields/select/select.component';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements AfterViewInit, DoCheck {
-
-	@ViewChild(SelectComponent) deno : SelectComponent;
+export class DashboardComponent implements AfterViewInit {
+	
 
 	_url = "/flows";
 
@@ -26,6 +25,8 @@ export class DashboardComponent implements AfterViewInit, DoCheck {
 
 	actual_nom : String;
 	actual_denomination : String;
+	actual_app_source : String;
+	actual_app_cible : String;
 
 	isCreation : boolean = false;
 
@@ -48,18 +49,6 @@ export class DashboardComponent implements AfterViewInit, DoCheck {
 		
 	}
 
-	ngAfterViewInit(){
-		console.log(this.deno);
-	}
-
-	ngDoCheck(){
-		
-	}
-
-	change(e) {
-	    console.log(e);
-	}
-
 	getFlow(){
 		this.api.get<Flow>(this._url+"/search", { params: new HttpParams().set('name', this.flow.nom) })
 			.subscribe(
@@ -78,6 +67,8 @@ export class DashboardComponent implements AfterViewInit, DoCheck {
 	storeOldValues(data : Flow){
 		this.actual_nom = data.nom;
 		this.actual_denomination = data.denomination;
+		this.actual_app_source = data.application_source;
+		this.actual_app_cible = data.application_cible;
 	}
 
 
@@ -101,6 +92,7 @@ export class DashboardComponent implements AfterViewInit, DoCheck {
 	}
 
 	setFlowApps(e){
+		
 		let elts = this.flow.nom.split("-");
 
 		this.flow.processus				= elts[0] ? elts[0] : "";
@@ -113,19 +105,28 @@ export class DashboardComponent implements AfterViewInit, DoCheck {
 		}else if(elts[1] == "ARTEMIS") {
 			this.flow.denomination = Denomination.AP04;
 			this.d_disabled = true;
-			console.log(this.deno.value);
+			console.log(this.deno);
 		}else {
 			this.d_disabled = false;
 		}
 	}
 
-
 	setStep(index: number) {
     	this.step = index;
 	}
 
-	someMethod(e){
-		console.log(e)
+	onDenoChange(denomination){
+
+		if(denomination == Denomination.AP03) {
+			this.flow.application_source = this.actual_app_source;
+			this.flow.application_cible = "ARTEMIS"
+		}
+		if(denomination == Denomination.AP04) {
+			this.flow.application_source = "ARTEMIS"
+			this.flow.application_cible = this.actual_app_cible
+		}
+
+		this.flow.nom = [this.flow.processus, this.flow.application_source, this.flow.application_cible].join("-");
 	}
 
 	openSnackBar(message: string, action: string) {

@@ -1,6 +1,6 @@
 <mat-form-field>
 	<mat-select [placeholder]="placeholder" [(ngModel)]="value"
-				[disabled]="disabled">
+				[disabled]="disabled" (selectionChange)="changed()">
 		<mat-option *ngFor="let one of source | enumsToValues" [value]="one.value">{{one.value}}</mat-option>
 	</mat-select>
 </mat-form-field>

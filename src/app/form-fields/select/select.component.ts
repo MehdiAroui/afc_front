@@ -44,6 +44,7 @@ export class SelectComponent implements ControlValueAccessor {
 	@Input() 	placeholder : String;
 
 	@Input() 	disabled : boolean = false;
+    @Output()   onChange: EventEmitter<string> = new EventEmitter<string>();
 
 	constructor(){
 	}
@@ -63,5 +64,9 @@ export class SelectComponent implements ControlValueAccessor {
     //From ControlValueAccessor interface
     registerOnTouched(fn: any) {
         this.onTouchedCallback = fn;
+    }
+
+    changed(){
+        this.onChange.emit(this.innerValue);
     }
 }

@@ -40,16 +40,12 @@
 
         <mat-expansion-panel [expanded]="step === 1" [disabled]="step !== 1" hideToggle>
             <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Destination
-                    </mat-panel-title>
-                <mat-panel-description>
-                    Type the country name
-                    <mat-icon>map</mat-icon>
-                </mat-panel-description>
+                    <!-- <mat-panel-title class="mat-h2">
+                        Évolution du flux {{flow.nom}}
+                    </mat-panel-title> -->
             </mat-expansion-panel-header>
 
-            <div class="row">
+            <div class="row" style="justify-content: space-evenly;align-items: flex-end;">
                 <mat-form-field appearance="outline" class="col-md-3">
                     <mat-label>Patrimoine</mat-label>
                     <input matInput placeholder="Patrimoine" [(ngModel)]="flow.partimoine_source">
@@ -71,9 +67,9 @@
                 </mat-form-field>
             </div>
 
-            <div class="row">
+            <div class="row" style="justify-content: space-evenly;align-items: flex-end;">
                 <app-select [(ngModel)]="flow.denomination" class="col-md-2" 
-                            [disabled]="d_disabled" #deno
+                            [disabled]="d_disabled" (onChange)="onDenoChange($event)"
                             [source]="denomination" placeholder="Dénomination">  
                 </app-select>
 
@@ -94,6 +90,27 @@
                             [source]="planification" placeholder="Planification">
                 </app-select> 
             </div>
+
+            <div class="row" style="justify-content: space-evenly;align-items: flex-end;">
+
+
+                <mat-form-field class="col-md-3">
+                    <textarea matInput [(ngModel)]="flow.description_demi_flux" placeholder="Textarea"></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-4">
+                    <textarea matInput cdkTextareaAutosize [(ngModel)]="flow.description_flux" placeholder="Textarea"></textarea>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-1">
+                    <input matInput placeholder="Délais" [(ngModel)]="flow.delai" required>
+                </mat-form-field>
+
+                <app-select [(ngModel)]="flow.criticite" class="col-md-2" 
+                            [source]="criticite" placeholder="Criticité">
+                </app-select> 
+
+            </div>  
 
             <mat-action-row>
                 <button mat-button color="primary" (click)="sendFlow()">Envoyer</button>

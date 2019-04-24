@@ -11,7 +11,6 @@ body {
 	}
 
 	.content{
-		margin-top: 10px;
 		&-bg-white{
 			padding: 10px 20px;
 			background-color: $white;
@@ -22,14 +21,17 @@ body {
 	}
 }
 
+mat-sidenav-content.wrapper.container.mat-drawer-content.mat-sidenav-content{
+	margin-left : auto !important;
+}
+
 .sidenav-container{
 	height: 90%;
 }
 
 mat-sidenav{
-	margin-top: 64px;
 	&.mat-drawer{
-		width: 15%;
+		width: 13%;
 		background-color: transparent;
 		border: none;
 	}
