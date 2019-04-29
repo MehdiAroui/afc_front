@@ -11,14 +11,20 @@ body {
 	}
 
 	.content{
+		border-radius: 4px;
 		&-bg-white{
 			padding: 10px 20px;
 			background-color: $white;
 		}
 		&-elevation{
-			@include mat-elevation(3);
+			@include mat-elevation(2);
 		}
 	}
+}
+
+.row{
+	justify-content: space-evenly;
+	align-items: flex-end;
 }
 
 mat-sidenav-content.wrapper.container.mat-drawer-content.mat-sidenav-content{

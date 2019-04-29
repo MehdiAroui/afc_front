@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -9,25 +9,15 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 
-  step = 0;
-  operation = "";
-  nom = "";
+  val1 : string = "";
+  val2 : string = "";
 
-  constructor(private http: HttpClient) { }
-  
-  setStep(index: number) {
-    this.step = index;
-  }
-
-  nextStep() {
-    this.step++;
-  }
-
-  prevStep() {
-    this.step--;
-  }
 
   ngOnInit() {
+  }
+
+  print(){
+    console.log(this.val1, this.val2)
   }
 
 }

@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { FluxComponent } from './flux/flux.component';
 
 
 import { NgProgressModule } from '@ngx-progressbar/core';
@@ -21,7 +21,7 @@ import { FormFieldsModule } from './form-fields/form-fields.module';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
+    FluxComponent,
     HomeComponent
   ],
   imports: [

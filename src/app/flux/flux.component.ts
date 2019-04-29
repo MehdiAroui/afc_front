@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
@@ -12,21 +12,21 @@ import { ApiService } from '../shared/services/api.service';
 import { SelectComponent } from '../form-fields/select/select.component';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-flux',
+  templateUrl: './flux.component.html',
+  styleUrls: ['./flux.component.scss']
 })
-export class DashboardComponent implements AfterViewInit {
+export class FluxComponent {
 	
 
 	_url = "/flows";
 
 	d_disabled : boolean = false;
 
-	actual_nom : String;
-	actual_denomination : String;
-	actual_app_source : String;
-	actual_app_cible : String;
+	actual_nom : string;
+	actual_denomination : string;
+	actual_app_source : string;
+	actual_app_cible : string;
 
 	isCreation : boolean = false;
 
@@ -34,7 +34,7 @@ export class DashboardComponent implements AfterViewInit {
 	flow : Flow = new Flow();
 	operation = 'set your';
 
-	elts : String[] = ["", "", ""]
+	elts : string[] = ["", "", ""]
 
 
 	mvs 			= MVSCible;
@@ -105,7 +105,6 @@ export class DashboardComponent implements AfterViewInit {
 		}else if(elts[1] == "ARTEMIS") {
 			this.flow.denomination = Denomination.AP04;
 			this.d_disabled = true;
-			console.log(this.deno);
 		}else {
 			this.d_disabled = false;
 		}

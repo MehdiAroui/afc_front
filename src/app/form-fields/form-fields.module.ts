@@ -9,6 +9,7 @@ import { InputComponent } from './input/input.component';
 import { SelectComponent } from './select/select.component';
 import { DynamicFieldDirective } from './dynamic-field.directive';
 import { DynamicFormsComponent } from './dynamic-forms/dynamic-forms.component';
+import { AutoCompleteComponent } from './auto-complete/auto-complete.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { DynamicFormsComponent } from './dynamic-forms/dynamic-forms.component';
 		SelectComponent, 
 		DynamicFormsComponent, 
 		DynamicFieldDirective,
-		EnumsToValuesPipe
+		EnumsToValuesPipe,
+		AutoCompleteComponent
 	],
 	imports: [
 		CommonModule,
@@ -27,7 +29,8 @@ import { DynamicFormsComponent } from './dynamic-forms/dynamic-forms.component';
 	],
 	exports : [
 		InputComponent,
-		SelectComponent
+		SelectComponent,
+		AutoCompleteComponent
 	]
 })
 export class FormFieldsModule {}

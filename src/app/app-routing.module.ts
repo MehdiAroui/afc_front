@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { FluxComponent } from './flux/flux.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
 	{path: "", redirectTo: "/flux", pathMatch: "full"},
-	{path : "flux", component: DashboardComponent},
-	{path : "home", component: HomeComponent}
+	{path : "flux", component: FluxComponent},
+	{path : "home", component: HomeComponent},
+	{path : "dash", component: HomeComponent}
 ];
 
 @NgModule({
