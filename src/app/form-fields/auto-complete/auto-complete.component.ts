@@ -15,20 +15,19 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 const noop = () => {
 };
 
+
 @Component({
   selector: 'app-complete',
   template: `
-      <div class="col-md-3">
-        <mat-form-field class="example-full-width">
-            <input #input="ngModel" type="text" placeholder="Flux" matInput [(ngModel)]="value"
-             [matAutocomplete]="auto" [name]="name">
-            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-form-field class="full-width">
+            <input #input="ngModel" [placeholder]="placeholder" type="text" matInput [(ngModel)]="value"
+             [matAutocomplete]="auto" [name]="name" [required]="required">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onSelectOption()">
               <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                 {{option}}
               </mat-option>
             </mat-autocomplete>
         </mat-form-field>
-      </div>
   `,
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
@@ -36,9 +35,13 @@ export class AutoCompleteComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('input') input: NgModel;
 
+  @Input() params = {};
   @Input() url;
+  @Input() required = false;
   @Input() len;
   @Input() name;
+  @Input() placeholder;
+  @Output() onSelectChange: EventEmitter<string> = new EventEmitter<string>();
   options: string[];
   filteredOptions: Observable<string[]>;
 
@@ -70,7 +73,7 @@ export class AutoCompleteComponent implements OnInit, ControlValueAccessor {
   }
 
   async getData(){
-    await this.http.get<string[]>(this.url)
+    await this.http.get<string[]>(this.url, this.params)
         .subscribe(
           data => this.options = data,
           err => alert("ERR")
@@ -78,14 +81,18 @@ export class AutoCompleteComponent implements OnInit, ControlValueAccessor {
 
     this.filteredOptions = this.input.control.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value, this.options))
+      map(value => this._filter(value))
     );
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return filterValue.length >= this.len ? this.options.filter(option => option.toLowerCase().indexOf(filterValue) === 0) : [];
+    return filterValue.length >= this.len ? this.options.filter(option => option.toLowerCase().indexOf(filterValue) >= 0) : [];
+  }
+
+  onSelectOption(){
+    this.onSelectChange.emit(this.innerValue)
   }
 
   //From ControlValueAccessor interface

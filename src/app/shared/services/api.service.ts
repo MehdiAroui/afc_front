@@ -21,7 +21,7 @@ export class ApiService {
 
 	constructor(private http : HttpClient){}
 
-	get<T>(url, config : any = {}) : Observable<T>{
+	get<T>(url, config : any = {}) : any{
 
 		return this.http.get<T>(this.apiUrl+url, {...config, ...this.options})
 		.pipe(
@@ -30,7 +30,7 @@ export class ApiService {
 		)
 	}
 
-	post<T>(url, data, config = {}){
+	post<T>(url, data, config = {}) : any{
 		return this.http.post<T>(this.apiUrl+url, data, {...config, ...this.options})
 		.pipe(
 			catchError(this.handleError)
