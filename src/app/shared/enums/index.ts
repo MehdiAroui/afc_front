@@ -3,3 +3,4 @@ export * from './denomination.enum';
 export * from './criticite.enum';
 export * from './planification.enum';
 export * from './type.enum';
+export * from './etat.enum';

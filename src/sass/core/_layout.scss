@@ -23,12 +23,19 @@ body {
 }
 
 .row{
-	justify-content: space-evenly;
-	align-items: flex-end;
+	&.between{
+		justify-content: space-between;
+	}
+	&.start{
+		align-items: flex-start;
+	}
+	&.end{
+		align-items: flex-end;
+	}
 }
 
 mat-sidenav-content.wrapper.container.mat-drawer-content.mat-sidenav-content{
-	margin-left : auto !important;
+	margin-left : 14% !important;
 }
 
 .sidenav-container{

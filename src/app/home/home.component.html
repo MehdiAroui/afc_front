@@ -1,80 +1,84 @@
-<div class="content content-bg-white content-elevation">
-	<div class="row">
-		<span class="mat-h1 col-md-6">Welcome Home !</span>
-		<div class="col-md-6" style="text-align: right; align-self: end">
-			<mat-radio-group (change)="onChange()"
-			aria-labelledby="example-radio-group-label"
-			[labelPosition]="'before'"
-			class="example-radio-group"
-			[(ngModel)]="env">
+<div class="row start">
+	<div class="content content-bg-white content-elevation col-md-4">
+		<div class="row">
+			<div class="col-md-12">
+				<mat-radio-group (change)="onChange()"
+				aria-labelledby="example-radio-group-label"
+				[labelPosition]="'after'"
+				class="example-radio-group"
+				[(ngModel)]="env">
 
-			<mat-radio-button class="radio-button" [value]="'d'">
-				Développement
-			</mat-radio-button>
-			<br>
-			<mat-radio-button class="radio-button" [value]="'ih'">
-				IH envirenement
-			</mat-radio-button>
-		</mat-radio-group>
+				<mat-radio-button class="radio-button" [value]="'d'">
+					Développement
+				</mat-radio-button>
+				<br>
+				<mat-radio-button class="radio-button" [value]="'ih'">
+					IH envirenement
+				</mat-radio-button>
+			</mat-radio-group>
+			</div>
+		</div>
+		<div class="row">
+			<app-complete class="col-md-12"
+				[url]="'/params/flows'"
+				[required]="true"
+				[len]="3"
+				[name]="'flux'"
+				[placeholder]="'Choisir le flux'"
+				(onSelectChange)="getFlowInfos($event)"
+				[(ngModel)]="flux_package.flow_name">
+			</app-complete>
+
+			<app-complete #auto
+				class="col-md-12"
+				[required]="true"
+				[url]="'/params/packages'" 
+				[len]="2"
+				[params]="packageParams"
+				[name]="'packages'"
+				[placeholder]="'Choisir le package'"
+				[(ngModel)]="flux_package.package_name">
+			</app-complete>
+
+			<!-- <mat-form-field class="col-md-12">
+	            <mat-label>Version</mat-label>  
+	            <input matInput [(ngModel)]="version" required>
+	        </mat-form-field> -->
 		</div>
 	</div>
-	<div class="row">
-		<app-complete class="col-md-4"
-			[url]="'/params/flows'"
-			[required]="true"
-			[len]="3"
-			[name]="'flux'"
-			[placeholder]="'Choisir le flux'"
-			(onSelectChange)="getFlowInfos($event)"
-			[(ngModel)]="flux_package.flux_name">
-			<mat-label></mat-label>
-		</app-complete>
-
-		<app-complete #autoComp
-			class="col-md-4"
-			[required]="true"
-			[url]="'/params/packages'" 
-			[len]="4"
-			[params]="PackageParams"
-			[name]="'packages'"
-			[placeholder]="'Choisir le package'"
-			[(ngModel)]="flux_package.package_name">
-		</app-complete>
-
-		<mat-form-field class="col-md-2">
-            <mat-label>Version</mat-label>  
-            <input matInput [(ngModel)]="version" required>
-        </mat-form-field>
-		<div>
-			<button mat-button color="primary" (click)="print()">PRIIIIIIIIIIIINT</button>
-		</div>
-	</div>
-</div>
-<div class="content" style="margin-top: 30px">
-	<div class="row">
-		<mat-card class="col-md-5" *ngFor="let config of flux_package.configs">
+	<div class="row col-md-6">
+		<mat-card class="col-md-12" style="margin:0 0 15px 15px;" *ngFor="let config of flux_package.configs">
 		  <mat-card-header>
 		    <div mat-card-avatar class="example-header-image"></div>
-		    <mat-card-title>{{config.name}}</mat-card-title>
+		    <mat-card-title>{{config.cellIndex}}</mat-card-title>
 		  </mat-card-header>
 		  <mat-card-content>
-		    <mat-form-field appearance="outline" class="col-md-5">
-                    <mat-label>Processus de flux</mat-label>  
-                    <input matInput [(ngModel)]="config.version_courante">
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="col-md-5">
-                    <mat-label>Processus de flux</mat-label>  
-                    <input matInput [(ngModel)]="config.version_cible">
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="col-md-5">
-                    <mat-label>Processus de flux</mat-label>  
-                    <input matInput [(ngModel)]="config.etat">
-                </mat-form-field>
+		    <mat-form-field appearance="outline" class="col-md-12">
+		            <mat-label>Processus de flux</mat-label>  
+		            <input matInput [(ngModel)]="config.version_courante">
+		        </mat-form-field>
+
+		        <mat-form-field appearance="outline" class="col-md-12">
+		            <mat-label>Processus de flux</mat-label>  
+		            <input matInput [(ngModel)]="config.version_cible">
+		        </mat-form-field>
+
+		        <app-select [(ngModel)]="config.etat" class="col-md-12" 
+                            [source]="etat" placeholder="État">
+                </app-select>
+
+		        <!-- <app-complete class="col-md-12"
+					[url]="'/params/etat'"
+					[required]="true"
+					[len]="3"
+					[name]="'etat'"
+					[placeholder]="'Choisir état'"
+					[(ngModel)]="config.etat">
+				</app-complete> -->
 		  </mat-card-content>
-		  <mat-card-actions>
-		    <button mat-button>LIKE</button>
-		    <button mat-button>SHARE</button>
-		  </mat-card-actions>
 		</mat-card>
 	</div>
+</div>
+<div class="fab-btn">
+	<button mat-fab color="primary" (click)="sendData()">Primary</button>
 </div>
