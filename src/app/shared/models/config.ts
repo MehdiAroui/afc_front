@@ -5,8 +5,8 @@ export class Config{
 	version_cible : string;
 	etat : string;
 
-	constructor(index : ?number){
-		this.cellIndex = index ? index : 0;
+	constructor(index : number = 0){
+		this.cellIndex = index;
 		this.name = "";
 		this.version_courante = "";
 		this.version_cible = "";

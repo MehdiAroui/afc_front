@@ -39,21 +39,12 @@
 				[placeholder]="'Choisir le package'"
 				[(ngModel)]="flux_package.package_name">
 			</app-complete>
-
-			<!-- <mat-form-field class="col-md-12">
-	            <mat-label>Version</mat-label>  
-	            <input matInput [(ngModel)]="version" required>
-	        </mat-form-field> -->
 		</div>
 	</div>
 	<div class="row col-md-6">
 		<mat-card class="col-md-12" style="margin:0 0 15px 15px;" *ngFor="let config of flux_package.configs">
-		  <mat-card-header>
-		    <div mat-card-avatar class="example-header-image"></div>
-		    <mat-card-title>{{config.cellIndex}}</mat-card-title>
-		  </mat-card-header>
-		  <mat-card-content>
-		    <mat-form-field appearance="outline" class="col-md-12">
+		  	<mat-card-content>
+		    	<mat-form-field appearance="outline" class="col-md-12">
 		            <mat-label>Processus de flux</mat-label>  
 		            <input matInput [(ngModel)]="config.version_courante">
 		        </mat-form-field>
@@ -66,15 +57,7 @@
 		        <app-select [(ngModel)]="config.etat" class="col-md-12" 
                             [source]="etat" placeholder="État">
                 </app-select>
-
-		        <!-- <app-complete class="col-md-12"
-					[url]="'/params/etat'"
-					[required]="true"
-					[len]="3"
-					[name]="'etat'"
-					[placeholder]="'Choisir état'"
-					[(ngModel)]="config.etat">
-				</app-complete> -->
+                
 		  </mat-card-content>
 		</mat-card>
 	</div>

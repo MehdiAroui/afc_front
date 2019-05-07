@@ -72,9 +72,9 @@ export class HomeComponent implements OnInit {
   setConfigs(){
     this.flux_package.configs.push(new Config(3))
 
-    if(this.env == "ih"){
+    /*if(this.env == "ih"){
       this.flux_package.configs.push(new Config(7))
-    }
+    }*/
   }
 
 
