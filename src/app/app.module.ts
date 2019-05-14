@@ -15,6 +15,9 @@ import { MaterialModule } from './material/material.module';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { FormFieldsModule } from './form-fields/form-fields.module';
 
+
+import { AuthModule } from './auth/auth.module';
+
 // Custom Services
 
 
@@ -29,6 +32,7 @@ import { FormFieldsModule } from './form-fields/form-fields.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AuthModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
