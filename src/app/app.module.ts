@@ -5,40 +5,31 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { AppRoutingModule } from './app-routing.module';
-import { FluxComponent } from './flux/flux.component';
 
+import { AppRoutingModule } from './app-routing.module';
 
 import { NgProgressModule } from '@ngx-progressbar/core';
-import { MaterialModule } from './material/material.module';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
-import { FormFieldsModule } from './form-fields/form-fields.module';
 
 
 import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './admin/admin.module';
 
 // Custom Services
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FluxComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
     AuthModule,
+    AdminModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
     NgProgressModule,
     NgProgressHttpModule,
-    FormFieldsModule
   ],
   providers: [
   ],

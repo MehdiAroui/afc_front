@@ -1,19 +1,19 @@
 import { Component, OnInit, Input, Output, EventEmitter, forwardRef, ViewChild } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 
-import { Etat } from '../shared/enums/index';
-import { FluxPackage } from '../shared/models/flux-package';
-import { Config } from '../shared/models/config';
-import { ApiService } from '../shared/services/api.service';
+import { Etat } from '../../shared/enums/index';
+import { FluxPackage } from '../../shared/models/flux-package';
+import { Config } from '../../shared/models/config';
+import { ApiService } from '../../shared/services/api.service';
 
-import { AutoCompleteComponent } from '../form-fields/auto-complete/auto-complete.component';
+import { AutoCompleteComponent } from '../../form-fields/auto-complete/auto-complete.component';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-release',
+  templateUrl: './release.component.html',
+  styleUrls: ['./release.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class ReleaseComponent implements OnInit {
 
   @ViewChild('auto') autoComp : AutoCompleteComponent;
 
@@ -64,17 +64,12 @@ export class HomeComponent implements OnInit {
   }
 
   onChange(){
-
     this.autoComp.params = { params: new HttpParams().set('env', this.env) }
     this.autoComp.getData();
   }
 
   setConfigs(){
     this.flux_package.configs.push(new Config(3))
-
-    /*if(this.env == "ih"){
-      this.flux_package.configs.push(new Config(7))
-    }*/
   }
 
 

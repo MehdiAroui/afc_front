@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
-import { Flow } from '../shared/models/flow';
-import { MVSCible, Criticite, Denomination, Type, Planification } from '../shared/enums/index';
+import { Flow } from '../../shared/models/flow';
+import { MVSCible, Criticite, Denomination, Type, Planification } from '../../shared/enums/index';
 
-import { ApiService } from '../shared/services/api.service';
+import { ApiService } from '../../shared/services/api.service';
 
-import { SelectComponent } from '../form-fields/select/select.component';
+import { SelectComponent } from '../../form-fields/select/select.component';
 
 @Component({
   selector: 'app-flux',
