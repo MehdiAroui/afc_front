@@ -5,6 +5,11 @@
 	</mat-card-header>
 	<mat-card-content>
 	    <mat-form-field>
+		    <input matInput placeholder="Enter your name" [formControl]="name" required>
+		    <mat-error *ngIf="name.invalid">Cannot be empty</mat-error>
+		</mat-form-field>
+
+		<mat-form-field>
 		    <input matInput placeholder="Enter your email" [formControl]="email" required>
 		    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
 		</mat-form-field>
@@ -16,7 +21,6 @@
 		</mat-form-field>
 	</mat-card-content>
 	<mat-card-actions>
-    	<button mat-raised-button color="primary" (click)="login()">Login</button>
-    	<button mat-raised-button (click)="signup()">SignUp</button>
+    	<button mat-raised-button color="primary" (click)="signUp()">Sign UP</button>
   	</mat-card-actions>
 </mat-card>
