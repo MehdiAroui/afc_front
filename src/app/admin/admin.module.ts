@@ -14,12 +14,14 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { HomeComponent } from './home/home.component';
 import { FluxComponent } from './flux/flux.component';
 import { ReleaseComponent } from './release/release.component';
+import { DeployComponent } from './deploy/deploy.component';
 
 @NgModule({
   declarations: [
   	HomeComponent,
   	FluxComponent,
-  	ReleaseComponent
+  	ReleaseComponent,
+  	DeployComponent
   	],
   imports: [
     CommonModule,

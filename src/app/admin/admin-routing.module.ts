@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FluxComponent } from './flux/flux.component';
 import { ReleaseComponent } from './release/release.component';
 import { HomeComponent } from './home/home.component';
+import { DeployComponent } from './deploy/deploy.component';
 
 const routes: Routes = [
 	{
@@ -17,6 +18,10 @@ const routes: Routes = [
 			{
         		path: 'release',
         		component: ReleaseComponent,
+    		},
+			{
+        		path: 'deploy',
+        		component: DeployComponent,
     		}
 		]
 	}

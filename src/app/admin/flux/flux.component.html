@@ -3,13 +3,9 @@
         <mat-expansion-panel [expanded]="true" (opened)="setStep(0)" hideToggle>
 
             <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Personal data
+                <mat-panel-title class="h3">
+                    {{operation}}
                 </mat-panel-title>
-                <mat-panel-description>
-                    Operation : {{operation}}
-                <mat-icon>account_circle</mat-icon>
-                </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="row">
                 <mat-form-field class="col-md-5 form-field form-field-lg">

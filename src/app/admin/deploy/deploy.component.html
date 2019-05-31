@@ -1,0 +1,38 @@
+<div class="row start">
+	<div style="position: fixed;width: 25%" class="col-md-4">
+		<div class="row content content-bg-white content-elevation">
+			<app-complete class="col-md-12"
+				[url]="'/params/flows'"
+				[required]="true"
+				[len]="3"
+				[name]="'flux'"
+				[placeholder]="'Choisir le flux'"
+				(onSelectChange)="getFlowInfos($event)"
+				[(ngModel)]="parameter.champ">
+			</app-complete>
+		</div>
+		<button style="width: 100%; margin-top: 10px" mat-raised-button color="primary" (click)="add()">ADD</button>
+	</div>
+	<div @list class="row col-md-8 offset-md-4 var-list" *ngIf="parameter.values != 0">
+		<div [class.activated]="one.activated" @items *ngFor="let one of parameter.values" 
+		class="full-width content content-bg-white content-elevation"
+		style="margin-bottom: 10px">
+
+			<div class="col-md-12">
+			<div class="h2">{{one.name}}</div>
+			<p>{{one.description}}</p>
+			</div>
+
+			<mat-form-field appearance="outline" class="col-md-6">
+                <mat-label>Processus de flux</mat-label>  
+                <input matInput [(ngModel)]="one.dev_value">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="col-md-6">
+                <mat-label>Processus de flux</mat-label>  
+                <input matInput [(ngModel)]="one.int_value">
+            </mat-form-field>
+
+		</div>
+	</div>
+</div>

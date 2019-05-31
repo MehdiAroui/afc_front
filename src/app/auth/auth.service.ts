@@ -14,7 +14,7 @@ export class AuthService {
 	// store the URL so we can redirect after logging in
 	static redirectUrl: string;
 
-	baseUrl : string = "http://localhost:8000/api/"
+	baseUrl : string = "http://localhost:8000/auth"
 
   	constructor(private http: HttpClient) {
   		this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('authUser')));
@@ -25,27 +25,17 @@ export class AuthService {
         return this.currentUserSubject.value;
     }
 
-  	/*login(email: string, password: string): Observable<void> {
-		return this.http.post<Token>(this.baseUrl+'auth/login', {email, password})
-			.pipe(map((res) => {
-				if ( res && res.token){
-					localStorage.setItem('authUser', JSON.stringify(res.user))
-					localStorage.setItem('authJwt', JSON.stringify(res.token))
-					this.currentUserSubject.next(res.user);
-				}
-			}))
-	}*/
+	makeQuery(object : any, login : boolean) : Observable<any> {
+		let url = login ? this.baseUrl+'/login' : this.baseUrl+'/register';
 
-	makeQuery(object : any, login : boolean) : Observable<void> {
-		let url = login ? this.baseUrl+'auth/login' : this.baseUrl+'auth/register'
-		return this.http.post<Token>(url, object)
-			.pipe(map((res) => {
+		return this.http.post<User>(url, object)
+			/*.pipe(map((res) => {
 				if ( res && res.token){
 					localStorage.setItem('authUser', JSON.stringify(res.user))
 					localStorage.setItem('authJwt', JSON.stringify(res.token))
 					this.currentUserSubject.next(res.user);
 				}
-			}))
+			}))*/
 	}
 
 	isLoggedIn() : boolean {

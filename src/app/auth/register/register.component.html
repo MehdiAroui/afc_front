@@ -5,8 +5,8 @@
 	</mat-card-header>
 	<mat-card-content>
 	    <mat-form-field>
-		    <input matInput placeholder="Enter your name" [formControl]="name" required>
-		    <mat-error *ngIf="name.invalid">Cannot be empty</mat-error>
+		    <input matInput placeholder="Enter your svn" [formControl]="svnLogin" required>
+		    <mat-error *ngIf="svnLogin.invalid">Cannot be empty</mat-error>
 		</mat-form-field>
 
 		<mat-form-field>

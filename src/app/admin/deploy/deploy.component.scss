@@ -1,0 +1,10 @@
+.var-list{
+
+	& > div {
+		border-left: 5px #d50000 solid;
+	}
+	
+	div[class*='activated']{
+		border-left: 5px #00e676 solid;
+	}
+}
