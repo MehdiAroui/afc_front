@@ -10,17 +10,18 @@
 				(onSelectChange)="getFlowInfos($event)"
 				[(ngModel)]="parameter.champ">
 			</app-complete>
+			<p>{{parameter.description}}</p>
 		</div>
 		<button style="width: 100%; margin-top: 10px" mat-raised-button color="primary" (click)="add()">ADD</button>
 	</div>
-	<div @list class="row col-md-8 offset-md-4 var-list" *ngIf="parameter.values != 0">
+	<div @list class="col-md-8 offset-md-4 var-list" *ngIf="showList">
 		<div [class.activated]="one.activated" @items *ngFor="let one of parameter.values" 
 		class="full-width content content-bg-white content-elevation"
 		style="margin-bottom: 10px">
 
-			<div class="col-md-12">
-			<div class="h2">{{one.name}}</div>
-			<p>{{one.description}}</p>
+			<div class="header">
+				<div class="h3 title">{{one.name}}</div>
+				<p class="description">{{one.description}}</p>
 			</div>
 
 			<mat-form-field appearance="outline" class="col-md-6">
