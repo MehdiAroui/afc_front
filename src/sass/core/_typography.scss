@@ -1,6 +1,6 @@
 
 $custom-typography: mat-typography-config(
-  $font-family: 'Nunito, Roboto'
+  $font-family: 'IBM Plex Sans, Nunito, Roboto'
 );
 
 @include mat-core($custom-typography);

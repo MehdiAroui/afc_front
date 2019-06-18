@@ -20,6 +20,8 @@ import { ApiService } from '../../shared/services/api.service';
 
 import { map } from 'rxjs/operators';
 
+import * as _ from 'lodash';
+
 @Component({
   selector: 'app-deploy',
   templateUrl: './deploy.component.html',
@@ -41,8 +43,8 @@ import { map } from 'rxjs/operators';
 })
 export class DeployComponent implements OnInit {
 
-	_url : String = "/variables";
-	showList : boolean;
+    _url : String = "/variables";
+    showList : boolean;
 
     parameter: Parameter = new Parameter();
 
@@ -52,34 +54,58 @@ export class DeployComponent implements OnInit {
         this.showList = false;
   	}
 
-    getFlowInfos(flowName){
+    async getFlowInfos(flowName){
 
-		let params = { params: new HttpParams().set('name', flowName)}
+		    let params = { params: new HttpParams().set('name', flowName)}
+        let values = [];
+        let vars = [];
 
-        this.api.get<Parameter>(this._url+"/search", params)
+        await this.api.get<Parameter>(this._url+"/search", params)
         .subscribe(
             (data) => {
-                console.log(data);
-              this.parameter = data;
+              values = data.values;
             },
             err => console.log(err)
         );
 
-        this.api.get<GlobalVar[]>(this._url+"/test", params)
+        await this.api.get<GlobalVar[]>(this._url+"/test", params)
             .subscribe(
                 (data) => {
                     data.forEach( one => {
-                        this.parameter.values.push(new Variable(one.name, one.description, one.value));
+                        vars.push(new Variable(one.name, one.description, one.value));
                     })
-                    setTimeout(() => {
-                        this.showList = true;
-                    }, 1000)
                 },
                 err => console.log(err)
             )
+
+        //console.log(vars, values)
+        //this.parameter.values = _.union(vars, values);
+
+        setTimeout(() => {
+            this.parameter.values = _.unionBy(vars, values, 'name');
+            this.showList = true;
+        }, 1000)
 	}
 
 	add(){
-		console.log(this.parameter);
+
+    /*name = 'ART00116-IMX-IMSI';
+
+    let params = { params: new HttpParams().set('name', name)}
+
+		this.api.get<GlobalVar[]>(this._url+"/test", params)
+      .subscribe(
+          (data) => {
+              let vars = [];
+
+
+
+              data.forEach( one => {
+                  vars.push(new Variable(one.name, one.description, one.value));
+              })
+              console.log(JSON.stringify(vars))
+          },
+          err => console.log(err)
+      )*/
 	}
 }

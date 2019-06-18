@@ -5,6 +5,7 @@ import { FluxComponent } from './flux/flux.component';
 import { ReleaseComponent } from './release/release.component';
 import { HomeComponent } from './home/home.component';
 import { DeployComponent } from './deploy/deploy.component';
+import { DashComponent } from './dash/dash.component';
 
 const routes: Routes = [
 	{
@@ -12,11 +13,15 @@ const routes: Routes = [
 		component: HomeComponent,
 		children : [
 			{
-        		path: 'flux',
-        		component: FluxComponent,
+        		path: 'accueil',
+        		component: DashComponent,
     		},
+            {
+                path: 'flux',
+                component: FluxComponent,
+            },
 			{
-        		path: 'release',
+        		path: 'livrable',
         		component: ReleaseComponent,
     		},
 			{

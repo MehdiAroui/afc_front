@@ -15,13 +15,15 @@ import { HomeComponent } from './home/home.component';
 import { FluxComponent } from './flux/flux.component';
 import { ReleaseComponent } from './release/release.component';
 import { DeployComponent } from './deploy/deploy.component';
+import { DashComponent } from './dash/dash.component';
 
 @NgModule({
   declarations: [
   	HomeComponent,
   	FluxComponent,
   	ReleaseComponent,
-  	DeployComponent
+  	DeployComponent,
+  	DashComponent
   	],
   imports: [
     CommonModule,
