@@ -1,0 +1,28 @@
+.var-list{
+
+	& > div {
+		border-left: 5px #d32f2f solid;
+		mat-form-field.mat-form-field {
+			font-size: 12px;
+		}
+	}
+	
+	div[class*='activated']{
+		border-left: 5px #00e676 solid;
+	}
+}
+
+.header{
+	.title, .description {
+		display: inline-block;
+	}
+	.title{
+		margin-right: 20px;
+		&:after{
+			content: ' :';
+		}
+	}
+	.description{
+		font-size: 12px;
+	}
+}

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../auth.service';
+import { User } from '../../shared/models/user';
+
+import { ApiService } from '../../shared/services/api.service';
 
 @Component({
   selector: 'app-register',
@@ -11,27 +13,31 @@ import { AuthService } from '../auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  name : FormControl = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  svnLogin : FormControl = new FormControl('', [Validators.required, Validators.minLength(6)]);
 	email : FormControl = new FormControl('', [Validators.required, Validators.email]);
   password : FormControl = new FormControl('', [Validators.required, Validators.minLength(6)]);
 
   hide : boolean = true;
 
-  constructor(private authService : AuthService, public router: Router) { }
+  constructor(private api : ApiService, public router: Router) { }
 
   ngOnInit() {
   }
 
   signUp(){
 
-  	let name = this.name.value,
+  	let svnLogin = this.svnLogin.value,
   			email = this.email.value,
   			password = this.password.value,
-  			_that = this
+  			_that = this;
+    let user = new User(svnLogin, email, password);
 
-  		this.authService.makeQuery({ name, email, password}, false)
+    let url = "/auth/register";
+
+  		this.api.post<User>(url, user, false)
           .subscribe(
-            data => _that.router.navigate(['/']))
+            data => _that.router.navigate(['/flux']),
+            err => console.log(err));
   }
 
   getErrorMessage() {

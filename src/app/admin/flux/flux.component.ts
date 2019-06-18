@@ -32,7 +32,7 @@ export class FluxComponent {
 
 	step = 0;
 	flow : Flow = new Flow();
-	operation = 'set your';
+	operation = '';
 
 	elts : string[] = ["", "", ""]
 

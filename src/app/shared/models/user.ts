@@ -1,7 +1,13 @@
 export class User {
-	_id: string;
-    name: string;
+	index: number;
+    svnLogin: string;
     email: string;
-    updated_at: string;
-    created_at: string;
+    password: string;
+
+    constructor(svn : string, email : string, password : string, index : number = 0){
+    	this.index = index;
+    	this.svnLogin = svn;
+    	this.email = email;
+    	this.password = password;
+    }
 }

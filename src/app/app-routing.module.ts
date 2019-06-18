@@ -3,7 +3,11 @@ import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-	{path: "", redirectTo: "/flux", pathMatch: "full"}
+	{
+		path: "", 
+		redirectTo: "flux", 
+		pathMatch: "full"
+	}
 ];
 
 @NgModule({

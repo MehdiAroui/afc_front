@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AuthRoutingModule } from './auth-routing.module';
@@ -15,6 +16,7 @@ import { AuthService } from './auth.service';
   declarations: [AuthComponent, LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
+    HttpClientModule,
     AuthRoutingModule,
     ReactiveFormsModule,
     MaterialModule
