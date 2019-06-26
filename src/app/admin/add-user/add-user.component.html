@@ -1,0 +1,52 @@
+<mat-dialog-content class="mat-typography">
+
+	<div class="row" *ngIf="errors.length != 0">
+		<ul class="error-list">
+			<li>error 1</li>
+			<li>bla bla bla</li>
+			<li>error de x could been Y</li>
+		</ul>
+	</div>
+
+	<div class="row between roles">
+  		<div class="box flex-container between col-md-5" (click)="checkRoles(1)">
+  			<span>Développeur</span>
+  			<span class="elements-spacer"></span>
+  			<mat-icon [class.selected]="role == 'DEV'" mat-icon>done_all</mat-icon>
+  		</div>
+  		<div class="box flex-container between col-md-5" (click)="checkRoles(2)">
+  			<span>Administrateur</span>
+  			<span class="elements-spacer"></span>
+  			<mat-icon [class.selected]="role == 'ADMIN'" mat-icon>done_all</mat-icon>
+  		</div>
+	</div>
+
+	<div class="row between">
+	  	<mat-form-field class="col-md-6">
+		 	<input matInput placeholder="Nom" [(ngModel)]="user.name">
+		</mat-form-field>
+		<mat-form-field class="col-md-6">
+		  	<input matInput placeholder="E-mail" [(ngModel)]="user.email">
+		</mat-form-field>
+	</div>
+
+	<div class="row between">
+	  	<mat-form-field class="col-md-6">
+			<input matInput placeholder="password" [(ngModel)]="user.password">
+		</mat-form-field>
+		<mat-form-field class="col-md-6">
+			<input matInput placeholder="Confirme" [(ngModel)]="passConfirm">
+		</mat-form-field>
+	</div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-raised-button 
+  			color="primary" 
+  			[mat-dialog-close]="user" 
+  			cdkFocusInitial 
+  			[disabled]="user.password != passConfirm">
+  		Ajouter
+  	</button>
+</mat-dialog-actions>

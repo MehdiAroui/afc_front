@@ -59,7 +59,7 @@ mat-sidenav{
     	height: 50px;
 		img.avatar{
 			border-radius: 50%;
-			border: 3px $white solid;
+			border: 2px #BEBDBD solid;
 			width: 100%;
 		}
 	}
@@ -74,5 +74,14 @@ mat-sidenav{
 		font-size: 14px;
 		display: block;
 		line-height: 10px;
+	}
+}
+
+
+ng-progress{
+	& > div.ng-progress-bar{	
+		& > div.ng-bar-placeholder{
+			height: 4px !important;
+		}
 	}
 }

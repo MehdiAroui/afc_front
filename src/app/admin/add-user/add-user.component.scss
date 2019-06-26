@@ -1,0 +1,9 @@
+
+.error-list{
+	width: 100%;
+	& li{
+		font-weight: 600;
+		font-size: 15px;
+		color: red;
+	}
+}

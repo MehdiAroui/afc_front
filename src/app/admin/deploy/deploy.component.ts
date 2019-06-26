@@ -63,23 +63,21 @@ export class DeployComponent implements OnInit {
         await this.api.get<Parameter>(this._url+"/search", params)
         .subscribe(
             (data) => {
-              values = data.values;
+                this.parameter= data;
+                values = data.values;
             },
             err => console.log(err)
         );
 
         await this.api.get<GlobalVar[]>(this._url+"/test", params)
-            .subscribe(
-                (data) => {
-                    data.forEach( one => {
-                        vars.push(new Variable(one.name, one.description, one.value));
-                    })
-                },
-                err => console.log(err)
-            )
-
-        //console.log(vars, values)
-        //this.parameter.values = _.union(vars, values);
+        .subscribe(
+            (data) => {
+                data.forEach( one => {
+                    vars.push(new Variable(one.name, one.description, one.value));
+                })
+            },
+            err => console.log(err)
+        )
 
         setTimeout(() => {
             this.parameter.values = _.unionBy(vars, values, 'name');
@@ -88,24 +86,7 @@ export class DeployComponent implements OnInit {
 	}
 
 	add(){
-
-    /*name = 'ART00116-IMX-IMSI';
-
-    let params = { params: new HttpParams().set('name', name)}
-
-		this.api.get<GlobalVar[]>(this._url+"/test", params)
-      .subscribe(
-          (data) => {
-              let vars = [];
-
-
-
-              data.forEach( one => {
-                  vars.push(new Variable(one.name, one.description, one.value));
-              })
-              console.log(JSON.stringify(vars))
-          },
-          err => console.log(err)
-      )*/
+        console.log(this.parameter)
 	}
+
 }

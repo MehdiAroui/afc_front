@@ -6,11 +6,15 @@ import { ReleaseComponent } from './release/release.component';
 import { HomeComponent } from './home/home.component';
 import { DeployComponent } from './deploy/deploy.component';
 import { DashComponent } from './dash/dash.component';
+import { UsersComponent } from './users/users.component';
+
+import { AuthGuard } from '../auth/auth-guard';
 
 const routes: Routes = [
 	{
 		path : "",
 		component: HomeComponent,
+        canActivate: [AuthGuard],
 		children : [
 			{
         		path: 'accueil',
@@ -27,7 +31,11 @@ const routes: Routes = [
 			{
         		path: 'deploy',
         		component: DeployComponent,
-    		}
+    		},
+            {
+                path: 'utilisateurs',
+                component: UsersComponent,
+            }
 		]
 	}
 ];

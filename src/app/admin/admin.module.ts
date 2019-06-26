@@ -16,6 +16,8 @@ import { FluxComponent } from './flux/flux.component';
 import { ReleaseComponent } from './release/release.component';
 import { DeployComponent } from './deploy/deploy.component';
 import { DashComponent } from './dash/dash.component';
+import { UsersComponent } from './users/users.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { DashComponent } from './dash/dash.component';
   	FluxComponent,
   	ReleaseComponent,
   	DeployComponent,
-  	DashComponent
+  	DashComponent,
+  	UsersComponent,
+  	AddUserComponent
   	],
   imports: [
     CommonModule,
@@ -34,6 +38,9 @@ import { DashComponent } from './dash/dash.component';
     AdminRoutingModule,
     MaterialModule,
     FormFieldsModule
+  ],
+  entryComponents: [
+    AddUserComponent
   ]
 })
 export class AdminModule { }

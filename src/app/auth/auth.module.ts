@@ -22,7 +22,6 @@ import { AuthService } from './auth.service';
     MaterialModule
   ],
   providers: [
-  	AuthService
   ]
 })
 export class AuthModule { }
