@@ -24,7 +24,7 @@ export class ReleaseComponent implements OnInit {
 
   etat = Etat;
 
-  env : string = "ih";
+  env : string = "d";
   packageParams = { params: new HttpParams().set('env', this.env) }
 
   constructor(private api : ApiService){}
@@ -66,6 +66,8 @@ export class ReleaseComponent implements OnInit {
   onChange(){
     this.autoComp.params = { params: new HttpParams().set('env', this.env) }
     this.autoComp.getData();
+    if(this.flux_package.flow_name != "")
+    this.getFlowInfos(this.flux_package.flow_name)
   }
 
   setConfigs(){

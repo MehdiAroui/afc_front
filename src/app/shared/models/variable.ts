@@ -17,7 +17,7 @@ export class Variable {
 		this.name=name;
 		this.description = description;
 		this.dev_value = value;
-		this.int_value = value;
+		this.int_value = "";
 		this.activated = true;
 	}
 }

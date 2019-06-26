@@ -1,5 +1,13 @@
 mat-toolbar{
 	margin-bottom: 10px;
 	background-color: #000;
-	color: #fff;
+	color: #BEBDBD;
+}
+
+mat-nav-list{
+	a {
+		mat-icon {
+			margin-right: 10px;
+		}
+	}
 }

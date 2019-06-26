@@ -11,13 +11,21 @@
 }
 
 .active{
-	color: #283593 !important;
+	color: $active_color !important;
+	border-left: 4px solid $active_color;
 	font-weight: 700;
-	:focus{
-		background-color: transparent;
+	transition: all .3s ease-in;
+	div.mat-list-item-content{
+		&:focus,&:visited,&:active,&:hover{
+			background-color: transparent;
+		}
 	}
 }
 
+.no-marge{
+	margin-right: 0 !important;
+	margin-left: 0 !important;
+}
 
 .fab-btn{
 	position: absolute;

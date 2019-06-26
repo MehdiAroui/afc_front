@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService } from '../auth.service';
 
@@ -13,12 +13,18 @@ export class LoginComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(6)]);
-	
+	returnUrl : string;
 	hide : boolean = true;
+  message : string = "";
 
-  	constructor(private authService : AuthService, public router: Router) { }
+  	constructor(
+      private authService : AuthService, 
+      public router: Router, 
+      private route: ActivatedRoute
+    ){}
 
   	ngOnInit() {
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/accueil';
   	}
 
     getErrorMessage() {
@@ -29,14 +35,19 @@ export class LoginComponent implements OnInit {
 
     login(){
 
-        let url = AuthService.redirectUrl;
+        //let url = AuthService.redirectUrl;
         let email = this.email.value,
-            password = this.password.value
-        let _that = this;
+            password = this.password.value;
+        //let _that = this;
 
-        this.authService.makeQuery({ email,password}, true)
+
+        this.authService.makeQuery({ email,password })
           .subscribe(
-            data => _that.router.navigate(['/']))
+            (data) => {
+              this.router.navigate([this.returnUrl])
+            },
+            (err) => this.message = "les identifiants sont incorrects"
+          );
     }
 
     signup(){

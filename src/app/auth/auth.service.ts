@@ -1,41 +1,51 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { Token } from '../shared/models/token';
-import { User } from '../shared/models/user';
+import { ApiService } from '../shared/services/api.service';
 
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
 export class AuthService {
 
-  private currentUserSubject: BehaviorSubject<User>;
-    public currentUser: Observable<User>;
+  private currentUserSubject: BehaviorSubject<Token>;
+    public currentUser: Observable<Token>;
 
 	// store the URL so we can redirect after logging in
 	static redirectUrl: string;
 
-	baseUrl : string = "http://localhost:8000/auth"
+	baseUrl : string = "http://localhost:8080/users";
+
+	headers : HttpHeaders = new HttpHeaders()
+								.set('Content-Type', 'application/json')
+								.set('Accept', 'application/json');
+
+	options = {headers : this.headers};
 
   	constructor(private http: HttpClient) {
-  		this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('authUser')));
+  		this.currentUserSubject = new BehaviorSubject<Token>(JSON.parse(localStorage.getItem('authUser')));
         this.currentUser = this.currentUserSubject.asObservable();
   	}
 
-  	get currentUserValue(): User {
+  	get currentUserValue(): Token {
         return this.currentUserSubject.value;
     }
 
-	makeQuery(object : any, login : boolean) : Observable<any> {
+	makeQuery(data : any, login : boolean = true) : Observable<any> {
 		let url = login ? this.baseUrl+'/login' : this.baseUrl+'/register';
-
-		return this.http.post<User>(url, object)
-			/*.pipe(map((res) => {
+		console.log(data, 'inside service');
+		return this.http.post<Token>(url, data, this.options)
+			.pipe(map((res) => {
+				console.log(res);
 				if ( res && res.token){
-					localStorage.setItem('authUser', JSON.stringify(res.user))
-					localStorage.setItem('authJwt', JSON.stringify(res.token))
+					
+					localStorage.setItem('authUser', JSON.stringify(res.user));
+					localStorage.setItem('authJwt', JSON.stringify(res.token));
 					this.currentUserSubject.next(res.user);
 				}
-			}))*/
+			}))
 	}
 
 	isLoggedIn() : boolean {
