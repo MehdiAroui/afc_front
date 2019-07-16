@@ -1,3 +1,54 @@
-<p>
-  dash works!
-</p>
+<div class="table-header" style="display: flex; align-items: baseline;">
+	<h2 class="mat-h1" style="display: inline-block;">Les Flux</h2>
+	<span class="elements-spacer"></span>
+	<mat-form-field style="margin-right: 15px">
+	  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+	</mat-form-field>
+	
+</div>
+<div class="mat-elevation-z2">
+  <table mat-table matSort [dataSource]="dataSource">
+
+    <!-- Time Column -->
+    <ng-container matColumnDef="nom">
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header> Nom </th>
+      <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description_flux">
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description_flux}} </td>
+    </ng-container>
+
+
+    <!-- Time Column -->
+    <ng-container matColumnDef="apps">
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header> Applications </th>
+      <td mat-cell *matCellDef="let element"> 
+      	<div class="flex-container">
+      		<span>{{element.application_source }}</span>
+	      	<mat-icon>arrow_right</mat-icon>
+	      	<span>{{element.application_cible }} </span>
+      	</div>
+      </td>
+    </ng-container>
+
+
+    <!-- Time Column -->
+    <ng-container matColumnDef="denomination">
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header> Dénomination </th>
+      <td mat-cell *matCellDef="let element"> {{element.denomination }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator 
+  		[length]="totalElements" 
+  		[pageSize]="pageSize" 
+  		[pageSizeOptions]="[3, 5, 10]"
+  		(page)="pageEvent = $event"
+  		showFirstLastButtons></mat-paginator>
+</div>

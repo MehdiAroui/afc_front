@@ -35,19 +35,17 @@ export class LoginComponent implements OnInit {
 
     login(){
 
-        //let url = AuthService.redirectUrl;
-        let email = this.email.value,
-            password = this.password.value;
-        //let _that = this;
+      let email = this.email.value,
+          password = this.password.value;
 
 
-        this.authService.makeQuery({ email,password })
-          .subscribe(
-            (data) => {
-              this.router.navigate([this.returnUrl])
-            },
-            (err) => this.message = "les identifiants sont incorrects"
-          );
+      this.authService.makeQuery({ email,password })
+        .subscribe(
+          (data) => {
+            this.router.navigate([this.returnUrl])
+          },
+          (err) => this.message = "les identifiants sont incorrects"
+        );
     }
 
     signup(){

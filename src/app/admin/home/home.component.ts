@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthService } from '../../auth/auth.service';
+import { Token } from '../../shared/models/token';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+	CurrentUser : Token = new Token();
 
-  ngOnInit() {
-  }
+	constructor(private authenticationService: AuthService) { }
+
+	ngOnInit() {
+		this.CurrentUser = this.authenticationService.currentUserValue;
+  	}
+
+  	logOut(){
+  		this.authenticationService.logout();
+  		location.reload();
+  	}
 
 }

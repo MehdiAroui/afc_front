@@ -86,7 +86,14 @@ export class DeployComponent implements OnInit {
 	}
 
 	add(){
-        console.log(this.parameter)
+
+    console.log(this.parameter)
+
+    this.api.post<Parameter>(this._url+"/send", this.parameter)
+    .subscribe(
+      data => console.log(data),
+      err => console.log(err)
+    )
 	}
 
 }

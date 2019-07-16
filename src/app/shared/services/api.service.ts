@@ -13,8 +13,8 @@ export class ApiService {
 
 	apiUrl = 'http://localhost:8080';
 	headers : HttpHeaders = new HttpHeaders()
-								.set('Content-Type', 'application/json')
-								.set('Accept', 'application/json');
+					.set('Content-Type', 'application/json')
+					.set('Accept', 'application/json');
 
 	options = {headers : this.headers};
 
@@ -25,7 +25,7 @@ export class ApiService {
 
 		return this.http.get<T>(this.apiUrl+url, {...config, ...this.options})
 		.pipe(
-			retry(2),
+			retry(1),
 			catchError(this.handleError)
 		)
 	}

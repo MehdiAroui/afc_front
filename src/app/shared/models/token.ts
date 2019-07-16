@@ -1,9 +1,15 @@
 export class Token {
 	token : string;
-	user: any;
+	userName : string;
+	userEmail : string;
+	role : string;
+	userId : number;
 
 	constructor(){
 		this.token = '';
-		this.user  =  {};
+		this.userName = '';
+		this.userEmail = '';
+		this.role = '';
+		this.userId = 0;
 	}
 }

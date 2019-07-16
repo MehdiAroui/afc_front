@@ -8,6 +8,7 @@ import { Flow } from '../../shared/models/flow';
 import { MVSCible, Criticite, Denomination, Type, Planification } from '../../shared/enums/index';
 
 import { ApiService } from '../../shared/services/api.service';
+import { OperationService } from '../../shared/services/operations.service';
 
 import { SelectComponent } from '../../form-fields/select/select.component';
 
@@ -45,11 +46,12 @@ export class FluxComponent {
 	type_cible 		= Type; 
 	
 	
-	constructor(private api : ApiService, private snackBar : MatSnackBar){
+	constructor(private api : ApiService, private operations : OperationService, private snackBar : MatSnackBar){
 		
 	}
 
 	getFlow(){
+		
 		this.api.get<Flow>(this._url+"/search", { params: new HttpParams().set('name', this.flow.nom) })
 			.subscribe(
 			(data) => {
@@ -74,20 +76,33 @@ export class FluxComponent {
 
 	sendFlow(){
 		let method = "/add";
+		let log = "Création";
 
 		if(!this.isCreation) {
 			method = "/edit";
+			log = "Évolution";
 		}
 
 		if(!this.isCreation && this.actual_nom != this.flow.nom){
-			method = "/disactivate"
+			method = "/disactivate";
+			log = "Désactivation";
 		}
 
 		this.api.post<boolean>(this._url+method, this.flow)
 			.subscribe((data) => {
 				let msg = data ? "Success" : "Vérifier que le fichier n'est pas ouvert et ré-essayer";
 				this.openSnackBar(msg, "Fermer")
-			}, err => console.log(err));
+				
+			}, err => {
+				console.log(err)
+			});
+
+
+		this.operations.createOne(`Traitement du flux: ${this.flow.nom} : ${log}`)
+		.subscribe(
+			data => console.log(data),
+			err => console.log(err)
+		)
 
 	}
 

@@ -4,9 +4,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
 	{
-		path: "", 
-		redirectTo: "flux", 
-		pathMatch: "full"
+		path: '',
+		loadChildren: './admin/admin.module#AdminModule'
+	},
+	{
+		path: 'auth',
+		loadChildren: './auth/auth.module#AuthModule'
+	},
+	{
+		path: '',
+		redirectTo: '/accueil',
+		pathMatch: 'full'
 	}
 ];
 

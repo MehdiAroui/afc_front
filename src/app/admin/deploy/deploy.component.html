@@ -12,7 +12,7 @@
 			</app-complete>
 			<p>{{parameter.description}}</p>
 		</div>
-		<button style="width: 100%; margin-top: 10px" mat-raised-button color="primary" (click)="add()">ADD</button>
+		<button style="width: 100%; margin-top: 10px" mat-raised-button color="primary" (click)="add()">Envoyer</button>
 	</div>
 	<div @list class="col-md-8 offset-md-4 var-list" *ngIf="showList">
 		<div [class.activated]="one.activated" @items *ngFor="let one of parameter.values" 

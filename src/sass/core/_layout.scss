@@ -78,6 +78,15 @@ mat-sidenav{
 }
 
 
+table{
+	th.mat-header-cell{
+		font-weight: 600;
+	    font-size: 14px;
+	    color: #333;
+	}
+}
+
+
 ng-progress{
 	& > div.ng-progress-bar{	
 		& > div.ng-bar-placeholder{

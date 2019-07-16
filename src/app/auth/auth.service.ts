@@ -25,7 +25,7 @@ export class AuthService {
 	options = {headers : this.headers};
 
   	constructor(private http: HttpClient) {
-  		this.currentUserSubject = new BehaviorSubject<Token>(JSON.parse(localStorage.getItem('authUser')));
+  		this.currentUserSubject = new BehaviorSubject<Token>(JSON.parse(localStorage.getItem('authObj')));
         this.currentUser = this.currentUserSubject.asObservable();
   	}
 
@@ -35,15 +35,15 @@ export class AuthService {
 
 	makeQuery(data : any, login : boolean = true) : Observable<any> {
 		let url = login ? this.baseUrl+'/login' : this.baseUrl+'/register';
-		console.log(data, 'inside service');
+		
 		return this.http.post<Token>(url, data, this.options)
 			.pipe(map((res) => {
-				console.log(res);
 				if ( res && res.token){
 					
-					localStorage.setItem('authUser', JSON.stringify(res.user));
+					localStorage.setItem('authObj', JSON.stringify(res));
 					localStorage.setItem('authJwt', JSON.stringify(res.token));
-					this.currentUserSubject.next(res.user);
+					localStorage.setItem('userID', JSON.stringify(res.userId));
+					this.currentUserSubject.next(res);
 				}
 			}))
 	}
@@ -53,7 +53,8 @@ export class AuthService {
 	}
 
   	logout(): void {
-    	localStorage.removeItem('authUser');
+    	localStorage.removeItem('authObj');
+    	localStorage.removeItem('authJwt');
         this.currentUserSubject.next(null);
   	}
 }

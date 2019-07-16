@@ -14,13 +14,13 @@
 				<img class="avatar img-responsive" src="http://www.asfinformatique.com/images/livreDor/avatar2.png">
 			</div>
 			<div class="info col-md-8">
-				<button mat-button [matMenuTriggerFor]="user">Mehdi Aroui <i class="material-icons">arrow_drop_down</i></button>
-				<span class="role">Développeur</span>
+				<button mat-button [matMenuTriggerFor]="user">{{CurrentUser.userName}} <i class="material-icons">arrow_drop_down</i></button>
+				<span class="role">{{CurrentUser.role}}</span>
 			</div>
 		</div>
 		<mat-menu #user="matMenu">
 		  <button mat-menu-item>Mon profil</button>
-		  <button mat-menu-item>Déconnexion</button>
+		  <button mat-menu-item (click)="logOut()">Déconnexion</button>
 		</mat-menu>
 	</mat-toolbar-row>
 </mat-toolbar>
@@ -49,6 +49,10 @@
 			<a mat-list-item routerLink="/utilisateurs" routerLinkActive="active">
 				<mat-icon mat-list-icon>people</mat-icon>
 				Utilisateurs
+			</a>
+			<a mat-list-item routerLink="/operations" routerLinkActive="active">
+				<mat-icon mat-list-icon>list_alt</mat-icon>
+				Operations
 			</a>
 			<a mat-list-item routerLink="#" routerLinkActive="active">
 				<mat-icon mat-list-icon>settings_applications</mat-icon>

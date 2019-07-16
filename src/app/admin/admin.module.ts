@@ -18,6 +18,7 @@ import { DeployComponent } from './deploy/deploy.component';
 import { DashComponent } from './dash/dash.component';
 import { UsersComponent } from './users/users.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { OperationComponent } from './operation/operation.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AddUserComponent } from './add-user/add-user.component';
   	DeployComponent,
   	DashComponent,
   	UsersComponent,
-  	AddUserComponent
+  	AddUserComponent,
+  	OperationComponent
   	],
   imports: [
     CommonModule,

@@ -9,25 +9,25 @@ import { HttpParams } from '@angular/common/http';
 import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, reduce, startWith, switchMap} from 'rxjs/operators';
 
-import { Flux } from '../../shared/models/flux';
+import { Operation } from '../../shared/models/operation';
 
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-dash',
-  templateUrl: './dash.component.html',
-  styleUrls: ['./dash.component.scss']
+  selector: 'app-operation',
+  templateUrl: './operation.component.html',
+  styleUrls: ['./operation.component.scss']
 })
-export class DashComponent implements AfterViewInit {
+export class OperationComponent implements AfterViewInit {
 
-  displayedColumns: string[] = ['nom', 'apps','description_flux', 'denomination'];
+  	displayedColumns: string[] = ['user', 'description', 'time'];
 
-	dataSource = new MatTableDataSource<Flux>([]);
+	dataSource = new MatTableDataSource<Operation>([]);
 	allData : any;
 
 	isLoadingResults : boolean;
 	pageIndex : number = 0;
-	pageSize : number = 5;
+	pageSize : number = 3;
 	totalElements : number = 0;
 
 
@@ -71,11 +71,12 @@ export class DashComponent implements AfterViewInit {
 			this.pageIndex = this.pageEvent.pageIndex;
 			this.pageSize = this.pageEvent.pageSize;
 		}
-		return this.http.get("/flows", 
+		return this.http.get("/operations", 
 			{ 
 				params: new HttpParams()
 						.set('page', this.pageIndex)
 						.set('size', this.pageSize) 
+						.set('sort', "createdAt,desc") 
 			}
 		)
 	}
@@ -88,7 +89,7 @@ export class DashComponent implements AfterViewInit {
 			.pipe(
 				switchMap(() => {
 					this.isLoadingResults = true;
-					return this.http.get('/flows/search', { params: new HttpParams().set('name', filterValue.trim().toLowerCase())});
+					return this.http.get('/users/search/findByNameIgnoreCaseContaining', { params: new HttpParams().set('name', filterValue.trim().toLowerCase())});
 				}),
 				catchError(() => {
 					this.isLoadingResults = false;
